@@ -6,6 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
+import { getVehicles } from "../../services/client";
 
 // Generate Order Data
 function createData(
@@ -67,6 +68,23 @@ function preventDefault(event: React.MouseEvent) {
 }
 
 export default function Orders() {
+  const [vehicles, setVehicles] = useState([]);
+
+  const fetchVehicles = () => {
+    getVehicles()
+      .then((res) => {
+        setVehicles(res.data);
+      })
+      .catch((err) => {
+        console.log("Error trying feth vehicles", JSON.stringify(err));
+      })
+      .finally(() => {});
+  };
+
+  React.useEffect(() => {
+    fetchVehicles();
+  }, []);
+
   return (
     <React.Fragment>
       <Title>Recent Orders</Title>
@@ -95,6 +113,8 @@ export default function Orders() {
       <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more orders
       </Link>
+
+      {vehicles}
     </React.Fragment>
   );
 }

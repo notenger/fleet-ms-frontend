@@ -10,7 +10,9 @@ export const getLocations = async () => {
 
 export const getVehicles = async () => {
   try {
-    return await axios.get(`http://localhost:8082/api/v1/vehicles/get`);
+    return await axios.get(
+      `http://basic-spring-api-env-1.eba-m8penzcg.eu-central-1.elasticbeanstalk.com/api/v1/vehicles/get`
+    );
   } catch (e) {
     throw e;
   }
