@@ -11,7 +11,7 @@ export const getLocations = async () => {
 export const getVehicles = async () => {
   try {
     return await axios.get(
-      `http://basic-spring-api-env-1.eba-m8penzcg.eu-central-1.elasticbeanstalk.com/api/v1/vehicles/get`
+      `${process.env.REACT_APP_VEHICLE_API_BASE_URL}/api/v1/vehicles/get`
     );
   } catch (e) {
     throw e;
@@ -21,7 +21,7 @@ export const getVehicles = async () => {
 export const saveVehicle = async (vehicle) => {
   try {
     return await axios.post(
-      `http://localhost:8082/api/v1/vehicles/add`,
+      `${import.meta.env.VEHICLE_API_BASE_URL}/api/v1/vehicles/add`,
       vehicle
     );
   } catch (e) {

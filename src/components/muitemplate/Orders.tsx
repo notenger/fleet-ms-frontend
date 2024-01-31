@@ -114,7 +114,9 @@ export default function Orders() {
         See more orders
       </Link>
 
-      {vehicles}
+      {vehicles.map((v) => (
+        <p>{v.model}</p>
+      ))}
     </React.Fragment>
   );
 }
